@@ -1,0 +1,20 @@
+Practical Machine Learning Project
+===================================
+
+###Data
+The data for this project come from http://groupware.les.inf.puc-rio.br/har. The data in the training set have a lot of NA or empty values. Because there are a lot of columns only very few data points within the data, we filter out columns which has more than 100 NAs or empty values. I also filter out the sequence column "x". After the clean, I get `r load("training_noNACols.saved");nrow(training_noNACols)` data points with `r ncol(training_noNACols) - 1` features.
+
+###Methodology
+Since the sensor data have noise, I choose random forest to do classification work. Cross validation is done internally. We can see the confusion matrix to see the result and the importance of the features.
+
+###Result
+The confusion matrix is as below. Accuracy is high.
+```
+Confusion Matrix  					
+	A	    B	    C	    D	    E	    class.error
+A	0.996	0.002	0.000	0.000	0.002	0.004
+B	0.008	0.982	0.011	0.000	0.000	0.018
+C	0.000	0.023	0.968	0.009	0.000	0.032
+D	0.000	0.000	0.006	0.991	0.003	0.009
+E	0.000	0.003	0.000	0.011	0.986	0.014
+```
